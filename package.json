@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@nestjs/typeorm": "^9.0.1",
-    "common-base-classes": "^0.20.10",
+    "common-base-classes": "0.21.0",
     "tslib": "~2.4",
     "typeorm": "^0.3.12"
   }
