@@ -1,6 +1,12 @@
 import { WhereClause } from '@common-types';
-import { ID, ILogger, ProjectionRepositoryPort } from 'common-base-classes';
-import { Repository } from 'typeorm';
+import {
+  IBaseEntity,
+  ID,
+  ILogger,
+  ProjectionRepositoryPort,
+  QueryParams,
+} from 'common-base-classes';
+import { FindOptionsWhere, Repository } from 'typeorm';
 import { AbstractTypeOrmModel } from '../repositories';
 
 export class AbstractProjectionRepository<
@@ -35,11 +41,9 @@ export class AbstractProjectionRepository<
     return found ? found : undefined;
   }
 
-  async findOne(
-    params: WhereClause<ReadModel> = {},
-  ): Promise<ReadModel | undefined> {
+  async findOne(params: QueryParams<ReadModel> = {}): Promise<ReadModel> {
     const found = await this.repository.findOne({
-      where: params,
+      where: params as FindOptionsWhere<ReadModel>,
     });
 
     return found ? found : undefined;
