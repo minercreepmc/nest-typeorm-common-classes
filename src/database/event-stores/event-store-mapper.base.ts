@@ -51,12 +51,12 @@ export abstract class AbstractEventTypeOrmMapper<
     const eventId = new UUID(persistentObject.eventId);
     const entityId = new UUID(persistentObject.entityId);
     const dateOccurred = DateVO.create(persistentObject.dateOccurred);
-    const details = this.toDomainDetails(persistentObject.eventData);
+    const eventDetails = this.toDomainDetails(persistentObject.eventData);
     const eventName = persistentObject.eventName;
     const entityType = persistentObject.entityType;
     const eventConstructor = this.eventConstructorDocuments[eventName];
     return new eventConstructor({
-      details,
+      eventDetails,
       eventId,
       eventName,
       entityId,

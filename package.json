@@ -1,6 +1,6 @@
 {
   "name": "nest-typeorm-common-classes",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Common shared class for nest and typeorm",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
