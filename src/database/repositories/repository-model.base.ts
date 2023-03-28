@@ -2,9 +2,9 @@ import { CreateDateColumn, PrimaryColumn, UpdateDateColumn } from 'typeorm';
 
 export abstract class AbstractTypeOrmModel {
   constructor(props?: AbstractTypeOrmModel) {
-    this.id = props.id;
-    this.createdAt = props.createdAt;
-    this.updatedAt = props.updatedAt;
+    this.id = props?.id;
+    this.createdAt = props?.createdAt;
+    this.updatedAt = props?.updatedAt;
   }
 
   @PrimaryColumn({ update: false })
