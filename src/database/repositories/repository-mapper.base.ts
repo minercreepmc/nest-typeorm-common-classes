@@ -3,7 +3,7 @@ import {
   OrmModelDetails,
   TypeOrmModelConstructor,
 } from '@common-types';
-import { AbstractEntity, DateVO, UUID } from 'common-base-classes';
+import { AbstractEntity, DateVO, ID, UUID } from 'common-base-classes';
 import { AbstractTypeOrmModel } from './repository-model.base';
 export abstract class AbstractTypeOrmMapper<
   Entity extends AbstractEntity<unknown>,
@@ -33,7 +33,7 @@ export abstract class AbstractTypeOrmMapper<
 
   toDomain(ormModel: OrmModel): Entity {
     const details = this.toDomainDetails(ormModel);
-    const id = new UUID(ormModel.id);
+    const id = new ID(ormModel.id);
     const createdAt = DateVO.create(ormModel.createdAt);
     const updatedAt = DateVO.create(ormModel.updatedAt);
 
