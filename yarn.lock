@@ -1296,10 +1296,10 @@ commander@^9.0.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-9.5.0.tgz#bc08d1eb5cedf7ccb797a96199d41c7bc3e60d30"
   integrity sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ==
 
-common-base-classes@0.21.9:
-  version "0.21.9"
-  resolved "https://registry.yarnpkg.com/common-base-classes/-/common-base-classes-0.21.9.tgz#682369d6fcda9d398c3f61ce22776705a7fc6db7"
-  integrity sha512-4+I6yRW0fGY2jLLl458B9qhzR7AJKgjhb7Ykxu+my6R1ZL5apUWEVpaDQIXjYvDtwa5Fdw8j/JbLZamQbPxaJg==
+common-base-classes@0.21.10:
+  version "0.21.10"
+  resolved "https://registry.yarnpkg.com/common-base-classes/-/common-base-classes-0.21.10.tgz#3f901e96f21fe81b7022decd69cd61f8563081f8"
+  integrity sha512-eBCj9m/mUyIseJFaFid6r6QhnlvLqeYKLMIBxEYtqINdgtnvNbxW/ZVQgz9x0ehVufE5R71Fgj+J2n2hZYxdFA==
   dependencies:
     ts-common-exceptions "^3.0.0"
     uuid "^9.0.0"
