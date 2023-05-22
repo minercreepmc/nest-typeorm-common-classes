@@ -31,7 +31,7 @@ export abstract class AbstractTypeormRepository<
   ) {}
 
   async save(entity: Entity): Promise<Entity> {
-    const ormEntity = this.typeOrmMapper.toPersistance(entity);
+    const ormEntity = await this.typeOrmMapper.toPersistance(entity);
     const created = await this.typeOrmRepository.save(ormEntity);
 
     this.logger.debug(`[Repository]: created ${created.id}`);
@@ -39,7 +39,7 @@ export abstract class AbstractTypeormRepository<
   }
 
   async delete(entity: Entity): Promise<boolean> {
-    const ormEntity = this.typeOrmMapper.toPersistance(entity);
+    const ormEntity = await this.typeOrmMapper.toPersistance(entity);
     const deleted = await this.typeOrmRepository.remove(ormEntity);
     this.logger.debug(`[Repository]: deleted ${entity.id.unpack()}`);
     return Boolean(deleted);
@@ -72,7 +72,7 @@ export abstract class AbstractTypeormRepository<
   }
 
   async update(id: ID, newState: Entity): Promise<Entity | undefined> {
-    const newStateOrm = this.typeOrmMapper.toPersistance(newState);
+    const newStateOrm = await this.typeOrmMapper.toPersistance(newState);
     const updated = await this.typeOrmRepository.save({ id, ...newStateOrm });
     return updated ? this.typeOrmMapper.toDomain(updated) : undefined;
   }

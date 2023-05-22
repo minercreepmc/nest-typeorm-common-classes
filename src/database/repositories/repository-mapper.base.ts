@@ -17,11 +17,13 @@ export abstract class AbstractTypeOrmMapper<
 
   protected abstract toPersistanceDetails(
     entity: Entity,
-  ): OrmModelDetails<OrmModel>;
-  protected abstract toDomainDetails(ormModel: OrmModel): EntityDetails;
+  ): Promise<OrmModelDetails<OrmModel>>;
+  protected abstract toDomainDetails(
+    ormModel: OrmModel,
+  ): Promise<EntityDetails>;
 
-  toPersistance(entity: Entity): OrmModel {
-    const details = this.toPersistanceDetails(entity);
+  async toPersistance(entity: Entity): Promise<OrmModel> {
+    const details = await this.toPersistanceDetails(entity);
 
     return new this.typeOrmModelConstructor({
       ...details,
@@ -31,8 +33,8 @@ export abstract class AbstractTypeOrmMapper<
     });
   }
 
-  toDomain(ormModel: OrmModel): Entity {
-    const details = this.toDomainDetails(ormModel);
+  async toDomain(ormModel: OrmModel): Promise<Entity> {
+    const details = await this.toDomainDetails(ormModel);
     const id = new ID(ormModel.id);
     const createdAt = DateVO.create(ormModel.createdAt);
     const updatedAt = DateVO.create(ormModel.updatedAt);
