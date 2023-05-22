@@ -10,12 +10,14 @@ class TestTypeOrmMapper extends AbstractTypeOrmMapper<
   unknown,
   TestOrmModel
 > {
-  protected toPersistanceDetails(entity: TestEntity): Partial<TestOrmModel> {
-    return {};
+  protected toPersistanceDetails(
+    entity: TestEntity,
+  ): Promise<Partial<TestOrmModel>> {
+    return Promise.resolve({});
   }
 
-  protected toDomainDetails(ormModel: TestOrmModel): unknown {
-    return {};
+  protected toDomainDetails(ormModel: TestOrmModel): Promise<unknown> {
+    return Promise.resolve({});
   }
 }
 
@@ -32,13 +34,13 @@ describe('AbstractTypeOrmMapper', () => {
   });
 
   describe('toPersistance', () => {
-    it('should convert an entity to an ORM model', () => {
+    it('should convert an entity to an ORM model', async () => {
       const entity = new TestEntity({
         id: new UUID(),
         details: {},
       });
 
-      const ormModel = mapper.toPersistance(entity);
+      const ormModel = await mapper.toPersistance(entity);
 
       expect(ormModel.id).toEqual(entity.id.unpack());
       expect(ormModel.createdAt).toEqual(entity.createdAt.unpack());
@@ -47,13 +49,13 @@ describe('AbstractTypeOrmMapper', () => {
   });
 
   describe('toDomain', () => {
-    it('should convert an ORM model to an entity', () => {
+    it('should convert an ORM model to an entity', async () => {
       const ormModel = new TestOrmModel();
       ormModel.id = new UUID().unpack();
       ormModel.createdAt = new Date();
       ormModel.updatedAt = new Date();
 
-      const entity = mapper.toDomain(ormModel);
+      const entity = await mapper.toDomain(ormModel);
 
       expect(entity.id.unpack()).toEqual(ormModel.id);
       expect(entity.createdAt.unpack()).toEqual(ormModel.createdAt);
